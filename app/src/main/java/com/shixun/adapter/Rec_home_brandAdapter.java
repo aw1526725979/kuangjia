@@ -16,28 +16,27 @@ import com.shixun.model.bean.ShouYeBean;
 
 import java.util.List;
 
-public class Rec_shouye_zhigongAdapter extends RecyclerView.Adapter<Rec_shouye_zhigongAdapter.Vh> {
+public class Rec_home_brandAdapter extends RecyclerView.Adapter<Rec_home_brandAdapter.Vh> {
     private List<ShouYeBean.DataBean.BrandListBean> list;
     private Context con;
 
-    public Rec_shouye_zhigongAdapter(List<ShouYeBean.DataBean.BrandListBean> brandList, Context con) {
+    public Rec_home_brandAdapter(List<ShouYeBean.DataBean.BrandListBean> brandList, Context con) {
         this.list = brandList;
         this.con = con;
     }
 
     @NonNull
     @Override
-    public Rec_shouye_zhigongAdapter.Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Rec_home_brandAdapter.Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = View.inflate(con, R.layout.item_home_two, null);
         return new Vh(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Rec_shouye_zhigongAdapter.Vh holder, int position) {
+    public void onBindViewHolder(@NonNull Rec_home_brandAdapter.Vh holder, int position) {
         holder.tv.setText(list.get(position).getName());
         Glide.with(con).load(list.get(position).getNew_pic_url()).into(holder.img);
     }
-
     @Override
     public int getItemCount() {
         return list.size();

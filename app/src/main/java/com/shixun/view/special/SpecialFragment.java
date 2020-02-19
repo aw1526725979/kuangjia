@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.shixun.R;
-import com.shixun.adapter.Rec_zhuantiAdapter;
+import com.shixun.adapter.Rec_specialAdapter;
 import com.shixun.base.BaseFragment;
 import com.shixun.interfaces.IPersenter;
 import com.shixun.interfaces.home.HomeContract;
@@ -22,7 +22,7 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
 
     private RecyclerView rec;
     private List<ShouYeBean.DataBean.TopicListBean> list;
-    private Rec_zhuantiAdapter adapter;
+    private Rec_specialAdapter adapter;
 
     @Override
     protected int getLayout() {
@@ -34,7 +34,7 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
         rec = view.findViewById(R.id.rec_zhuanti);
         rec.setLayoutManager(new LinearLayoutManager(context));
         list = new ArrayList<>();
-        adapter = new Rec_zhuantiAdapter(list, context);
+        adapter = new Rec_specialAdapter(list, context);
         rec.setAdapter(adapter);
     }
 

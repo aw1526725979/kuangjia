@@ -16,11 +16,10 @@ import com.shixun.model.bean.FenLei_TabBean;
 
 import java.util.List;
 
-public class Rec_fenleiAdapter extends RecyclerView.Adapter<Rec_fenleiAdapter.Vh>{
+public class Rec_classifyAdapter extends RecyclerView.Adapter<Rec_classifyAdapter.Vh>{
     private List<FenLei_TabBean.DataBean.CategoryListBean> list;
     private Context con;
-
-    public Rec_fenleiAdapter(List<FenLei_TabBean.DataBean.CategoryListBean> list, Context con) {
+    public Rec_classifyAdapter(List<FenLei_TabBean.DataBean.CategoryListBean> list, Context con) {
         this.list = list;
         this.con = con;
     }

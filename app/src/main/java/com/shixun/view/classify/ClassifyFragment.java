@@ -27,7 +27,6 @@ import q.rorbin.verticaltablayout.adapter.TabAdapter;
 import q.rorbin.verticaltablayout.widget.ITabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
-
 public class ClassifyFragment extends BaseFragment implements FenLeiContract.View {
     private EditText etFenlei;
     private VerticalTabLayout tabFenlei;
@@ -69,13 +68,14 @@ public class ClassifyFragment extends BaseFragment implements FenLeiContract.Vie
         for (int i = 0; i < categoryList.size(); i++) {
             String name = categoryList.get(i).getName();
             tabs.add(name);
-
-            FenLei_Fragment fenLei_fragment = new FenLei_Fragment();
+            //碎片传值
+            classify_Fragment fenLei_fragment = new classify_Fragment();
             Bundle bund = new Bundle();
             bund.putInt("key",categoryList.get(i).getId());
             fenLei_fragment.setArguments(bund);
             fragments.add(fenLei_fragment);
         }
+        //开启Fragment事务  控制Fragment显示隐藏
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         for (int i = 0; i < fragments.size(); i++) {
             ft.add(R.id.fl_fenlei,fragments.get(i)).hide(fragments.get(i));

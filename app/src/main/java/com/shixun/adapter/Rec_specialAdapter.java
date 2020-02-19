@@ -16,11 +16,11 @@ import com.shixun.model.bean.ShouYeBean;
 
 import java.util.List;
 
-public class Rec_shouye_yisiAdapter extends RecyclerView.Adapter<Rec_shouye_yisiAdapter.Vh> {
-    private List<ShouYeBean.DataBean.NewGoodsListBean> list;
+public class Rec_specialAdapter extends RecyclerView.Adapter<Rec_specialAdapter.Vh> {
+    private List<ShouYeBean.DataBean.TopicListBean> list;
     private Context con;
 
-    public Rec_shouye_yisiAdapter(List<ShouYeBean.DataBean.NewGoodsListBean> list, Context con) {
+    public Rec_specialAdapter(List<ShouYeBean.DataBean.TopicListBean> list, Context con) {
         this.list = list;
         this.con = con;
     }
@@ -28,15 +28,16 @@ public class Rec_shouye_yisiAdapter extends RecyclerView.Adapter<Rec_shouye_yisi
     @NonNull
     @Override
     public Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(con, R.layout.item_home, null);
+        View view = View.inflate(con, R.layout.item_special, null);
         return new Vh(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Vh holder, int position) {
-        holder.name.setText(list.get(position).getName());
-        holder.price.setText(list.get(position).getRetail_price());
-        Glide.with(con).load(list.get(position).getList_pic_url()).into(holder.img);
+        holder.title.setText(list.get(position).getTitle());
+        holder.desc.setText(list.get(position).getSubtitle());
+        holder.price.setText(list.get(position).getPrice_info()+"元起");
+        Glide.with(con).load(list.get(position).getItem_pic_url()).into(holder.img);
     }
 
     @Override
@@ -46,13 +47,15 @@ public class Rec_shouye_yisiAdapter extends RecyclerView.Adapter<Rec_shouye_yisi
 
     public class Vh extends RecyclerView.ViewHolder {
         ImageView img;
-        TextView name;
+        TextView title;
+        TextView desc;
         TextView price;
         public Vh(@NonNull View itemView) {
             super(itemView);
-            img =  itemView.findViewById(R.id.iv_item_shouye_yisi);
-            name =  itemView.findViewById(R.id.tv_item_shouye_yisiname);
-            price =  itemView.findViewById(R.id.tv_item_shouye_yisiprice);
+            img =  itemView.findViewById(R.id.iv_item_zhuanti_img);
+            title =  itemView.findViewById(R.id.tv_item_zhuanti_title);
+            desc =  itemView.findViewById(R.id.tv_item_zhuanti_desc);
+            price =  itemView.findViewById(R.id.tv_item_zhuanti_price);
         }
     }
 }

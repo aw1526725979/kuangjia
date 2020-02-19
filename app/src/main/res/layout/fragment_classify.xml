@@ -10,13 +10,13 @@
         android:layout_margin="10dp"
         android:layout_marginBottom="20dp"
         android:background="#C7C7C7"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:hint="🔍商品搜索，共239款好物"
         app:layout_constraintTop_toTopOf="parent" />
     <q.rorbin.verticaltablayout.VerticalTabLayout
         android:id="@+id/tab_fenlei"
-        android:layout_width="38dp"
-        android:layout_height="0dp"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
         android:layout_margin="20dp"
         app:tab_margin="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,7 +24,6 @@
         app:layout_constraintTop_toTopOf="@id/fl_fenlei"
         app:layout_constraintBottom_toBottomOf="parent"
         app:tab_mode="scrollable" />
-
     <FrameLayout
         android:id="@+id/fl_fenlei"
         android:layout_width="0dp"

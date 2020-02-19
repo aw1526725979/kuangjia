@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.shixun.GoodsDescActivity;
 import com.shixun.R;
-import com.shixun.adapter.Rec_fenleiAdapter;
+import com.shixun.adapter.Rec_classifyAdapter;
 import com.shixun.base.BaseFragment;
 import com.shixun.interfaces.IPersenter;
 import com.shixun.interfaces.fenleiitem.FenLeiItemContract;
@@ -23,11 +23,10 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class FenLei_Fragment extends BaseFragment implements FenLeiItemContract.View {
+public class classify_Fragment extends BaseFragment implements FenLeiItemContract.View {
     private List<FenLei_TabBean.DataBean.CategoryListBean> tablist;
     private RecyclerView rec;
-    private Rec_fenleiAdapter adapter;
+    private Rec_classifyAdapter adapter;
     private ImageView img_fenlei;
     private TextView tv_fenlei;
     private int posi = 0;
@@ -37,7 +36,7 @@ public class FenLei_Fragment extends BaseFragment implements FenLeiItemContract.
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
-        return R.layout.fragment_fenlei_;
+        return R.layout.fragment_classify_;
     }
 
     @Override
@@ -48,10 +47,10 @@ public class FenLei_Fragment extends BaseFragment implements FenLeiItemContract.
         rec.setLayoutManager(new GridLayoutManager(getActivity(),3));
 
         tablist = new ArrayList<>();
-        adapter = new Rec_fenleiAdapter(tablist, getActivity());
+        adapter = new Rec_classifyAdapter(tablist, getActivity());
         rec.setAdapter(adapter);
 
-        adapter.setOnClick(new Rec_fenleiAdapter.OnClick() {
+        adapter.setOnClick(new Rec_classifyAdapter.OnClick() {
             @Override
             public void OnItemClick(int position) {
                 ArrayList<FenLei_TabBean.DataBean.CategoryListBean> list = new ArrayList<>();

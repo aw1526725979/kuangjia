@@ -12,8 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.shixun.R;
-import com.shixun.adapter.Rec_shouye_yisiAdapter;
-import com.shixun.adapter.Rec_shouye_zhigongAdapter;
+import com.shixun.adapter.Rec_home_newstartingAdapter;
+import com.shixun.adapter.Rec_home_brandAdapter;
 import com.shixun.base.BaseFragment;
 import com.shixun.interfaces.IPersenter;
 import com.shixun.interfaces.home.HomeContract;
@@ -30,9 +30,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     private Banner banner;
     private TabLayout tabShouye;
     private RecyclerView rec_shouye_zhigong;
-    private Rec_shouye_zhigongAdapter adapter;
+    private Rec_home_brandAdapter adapter;
     private RecyclerView yisi;
-    private Rec_shouye_yisiAdapter yisiAdapter;
+    private Rec_home_newstartingAdapter yisiAdapter;
     private TextView tvZhigong;
     private TextView tvYisi;
 
@@ -122,12 +122,12 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
                 //rec直供的适配器
                 List<ShouYeBean.DataBean.BrandListBean> brandList = shouYeBean.getData().getBrandList();
-                adapter = new Rec_shouye_zhigongAdapter(brandList, getActivity());
+                adapter = new Rec_home_brandAdapter(brandList, getActivity());
                 rec_shouye_zhigong.setAdapter(adapter);
 
                 //rec一四首发
                 List<ShouYeBean.DataBean.NewGoodsListBean> newGoodsList = shouYeBean.getData().getNewGoodsList();
-                yisiAdapter = new Rec_shouye_yisiAdapter(newGoodsList, getActivity());
+                yisiAdapter = new Rec_home_newstartingAdapter(newGoodsList, getActivity());
                 yisi.setAdapter(yisiAdapter);
             }
         });
