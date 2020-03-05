@@ -3,8 +3,8 @@ package com.shixun.base;
 
 
 
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.IBaseView;
-import com.shixun.interfaces.IPersenter;
 
 import java.lang.ref.WeakReference;
 
@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 
-public class BasePersenter<V extends IBaseView> implements IPersenter<V> {
+public class BasePersenter<V extends IBaseView> implements IBasePersenter<V> {
 
     protected V mView;
 
@@ -22,8 +22,9 @@ public class BasePersenter<V extends IBaseView> implements IPersenter<V> {
     //rxjava2 数据加载的时候，界面回收一起的数据内存泄漏
     protected CompositeDisposable compositeDisposable;
 
+
     @Override
-    public void attchView(V view) {
+    public void attachView(V view) {
         weakReference = new WeakReference<>(view);
         this.mView = weakReference.get();
     }

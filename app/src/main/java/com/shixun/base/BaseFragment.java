@@ -11,13 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.shixun.Utils.SystemUtils;
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.IBaseView;
-import com.shixun.interfaces.IPersenter;
 
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment<V extends IBaseView,P extends IPersenter> extends Fragment implements IBaseView {
+public abstract class BaseFragment<V extends IBaseView,P extends IBasePersenter> extends Fragment implements IBaseView {
 
     protected Context context;
     protected P persenter;
@@ -37,7 +36,7 @@ public abstract class BaseFragment<V extends IBaseView,P extends IPersenter> ext
 
             initView(view);
             persenter = createPersenter();
-            persenter.attchView(this);
+            persenter.attachView(this);
             initData();
         }
         return view;
@@ -59,7 +58,7 @@ public abstract class BaseFragment<V extends IBaseView,P extends IPersenter> ext
     public void onResume() {
         super.onResume();
         if(persenter != null){
-            persenter.attchView(this);
+            persenter.attachView(this);
         }
     }
 

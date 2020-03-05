@@ -11,18 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.shixun.R;
-import com.shixun.model.bean.ShouYeBean;
+import com.shixun.model.bean.IndexBean;
 
 
 import java.util.List;
 
 public class Rec_specialAdapter extends RecyclerView.Adapter<Rec_specialAdapter.Vh> {
-    private List<ShouYeBean.DataBean.TopicListBean> list;
+    private List<IndexBean.DataBean.TopicListBean> list;
     private Context con;
 
-    public Rec_specialAdapter(List<ShouYeBean.DataBean.TopicListBean> list, Context con) {
-        this.list = list;
-        this.con = con;
+    public Rec_specialAdapter(List<IndexBean.DataBean.TopicListBean> list, Context context) {
+
     }
 
     @NonNull

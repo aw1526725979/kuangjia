@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shixun.R;
 import com.shixun.adapter.Rec_specialAdapter;
 import com.shixun.base.BaseFragment;
-import com.shixun.interfaces.IPersenter;
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.home.HomeContract;
-import com.shixun.model.bean.ShouYeBean;
+import com.shixun.model.bean.IndexBean;
 import com.shixun.persenter.HomePersenter;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
 
 
     private RecyclerView rec;
-    private List<ShouYeBean.DataBean.TopicListBean> list;
+    private List<IndexBean.DataBean.TopicListBean> list;
     private Rec_specialAdapter adapter;
 
     @Override
@@ -44,16 +44,11 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
-    protected IPersenter createPersenter() {
+    protected IBasePersenter<HomeContract.View> createPersenter() {
         return new HomePersenter();
     }
 
-    @Override
-    public void HomeDataReturn(ShouYeBean shouYeBean) {
-        List<ShouYeBean.DataBean.TopicListBean> topicList = shouYeBean.getData().getTopicList();
-        list.addAll(topicList);
-        adapter.notifyDataSetChanged();
-    }
+
 
     @Override
     public void showLoading() {
@@ -63,5 +58,12 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void showError(String err) {
 
+    }
+
+    @Override
+    public void getHomeDataReturn(IndexBean indexBean) {
+        List<IndexBean.DataBean.TopicListBean> topicList = indexBean.getData().getTopicList();
+        list.addAll(topicList);
+        adapter.notifyDataSetChanged();
     }
 }

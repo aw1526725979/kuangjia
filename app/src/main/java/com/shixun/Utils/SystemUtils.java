@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 
 import com.shixun.apps.MyApp;
 
+
 public class SystemUtils {
 
     /**
@@ -23,7 +24,7 @@ public class SystemUtils {
     }
 
     /**
-     * 当前是否是wifi链接a
+     * 当前是否是wifi链接
      * @return
      */
     public static boolean isWifiConnected(){
@@ -84,7 +85,6 @@ public class SystemUtils {
             return pgInfo.getLongVersionCode();
         }
     }
-
 
 
 }

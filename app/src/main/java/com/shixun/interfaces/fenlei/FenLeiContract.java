@@ -1,15 +1,15 @@
 package com.shixun.interfaces.fenlei;
 
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.IBaseView;
-import com.shixun.interfaces.IPersenter;
-import com.shixun.model.bean.FenLeiBean;
+import com.shixun.model.bean.SortBean;
 
 public interface FenLeiContract {
     interface View extends IBaseView {
-        void FenLeiDataReturn(FenLeiBean fenLeiBean);
+        void FenLeiDataReturn(SortBean sortBean);
     }
 
-    interface Persenter extends IPersenter<View> {
+    interface Persenter extends IBasePersenter<View> {
         void getFenLeiData();
     }
 }

@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.shixun.R;
-import com.shixun.model.bean.FenLei_TabBean;
+import com.shixun.model.bean.CartBean;
+import com.shixun.model.bean.SortBean;
 
 
 import java.util.List;
 
 public class Rec_classifyAdapter extends RecyclerView.Adapter<Rec_classifyAdapter.Vh>{
-    private List<FenLei_TabBean.DataBean.CategoryListBean> list;
+    private List<SortBean.DataBean.CategoryListBean> list;
     private Context con;
-    public Rec_classifyAdapter(List<FenLei_TabBean.DataBean.CategoryListBean> list, Context con) {
+    public Rec_classifyAdapter(List<SortBean.DataBean.CategoryListBean> list, Context con) {
         this.list = list;
         this.con = con;
     }

@@ -7,18 +7,22 @@ import java.io.File;
 
 public class Constant {
 
+    public static final String BASE_WAN_URL = "https://www.wanandroid.com/"; //wanandroid基础地址
 
-    public static final String Base_Home_url = "https://cdwan.cn/";
-
+    public static final String BASE_SHOP_URL = "https://cdwan.cn/api/";  //商城的基础地址
 
 
     //网络缓存的地址
     public static final String PATH_DATA = MyApp.app.getCacheDir().getAbsolutePath() + File.separator + "data";
 
-    public static final String PATH_CACHE = PATH_DATA + "/ShiXun";
+    public static final String PATH_CACHE = PATH_DATA + "/shop";
 
-    public static final int CLICK_TIME = 2000;
 
-    public static int uid;
+    public static final String PRICE_MODEL = "$元起";
+
+    public static String session_id;
+
+    public static String token;
+
 
 }

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.shixun.model.bean.FenLei_TabBean;
+import com.shixun.model.bean.SortBean;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class GoodsDescActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        ArrayList<FenLei_TabBean.DataBean.CategoryListBean> list = (ArrayList<FenLei_TabBean.DataBean.CategoryListBean>) getIntent().getSerializableExtra("data");
+        ArrayList<SortBean.DataBean.CategoryListBean> list = (ArrayList<SortBean.DataBean.CategoryListBean>) getIntent().getSerializableExtra("data");
         int posi = getIntent().getIntExtra("posi", -1);
         mTool = (Toolbar) findViewById(R.id.tool);
         setTitle("");

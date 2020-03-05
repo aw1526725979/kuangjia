@@ -1,16 +1,18 @@
 package com.shixun.interfaces.fenleiitem;
 
 
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.IBaseView;
-import com.shixun.interfaces.IPersenter;
-import com.shixun.model.bean.FenLei_TabBean;
+import com.shixun.model.bean.SortBean;
+import com.shixun.model.bean.SortDetailTabBean;
+import com.shixun.model.bean.SortGoodsBean;
 
 public interface FenLeiItemContract {
     interface View extends IBaseView {
-        void FenLeiItemDataReturn(FenLei_TabBean fenLei_tabBean);
+        void FenLeiItemDataReturn(SortBean sortBean);
     }
 
-    interface Persenter extends IPersenter<View> {
+    interface Persenter extends IBasePersenter<View> {
         void getFenLeiItemData(int id);
     }
 }

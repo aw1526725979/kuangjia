@@ -12,9 +12,10 @@ import com.shixun.GoodsDescActivity;
 import com.shixun.R;
 import com.shixun.adapter.Rec_classifyAdapter;
 import com.shixun.base.BaseFragment;
-import com.shixun.interfaces.IPersenter;
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.fenleiitem.FenLeiItemContract;
-import com.shixun.model.bean.FenLei_TabBean;
+import com.shixun.model.bean.SortBean;
+import com.shixun.model.bean.SortDetailTabBean;
 import com.shixun.persenter.FenLeiItemPersenter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class classify_Fragment extends BaseFragment implements FenLeiItemContract.View {
-    private List<FenLei_TabBean.DataBean.CategoryListBean> tablist;
+    private List<SortBean.DataBean.CategoryListBean> tablist;
     private RecyclerView rec;
     private Rec_classifyAdapter adapter;
     private ImageView img_fenlei;
@@ -53,7 +54,7 @@ public class classify_Fragment extends BaseFragment implements FenLeiItemContrac
         adapter.setOnClick(new Rec_classifyAdapter.OnClick() {
             @Override
             public void OnItemClick(int position) {
-                ArrayList<FenLei_TabBean.DataBean.CategoryListBean> list = new ArrayList<>();
+                ArrayList<SortBean.DataBean.CategoryListBean> list = new ArrayList<>();
                 list.addAll(tablist);
                 Intent intent = new Intent(context, GoodsDescActivity.class);
                 intent.putExtra("data",list);
@@ -75,7 +76,7 @@ public class classify_Fragment extends BaseFragment implements FenLeiItemContrac
     }
 
     @Override
-    protected IPersenter createPersenter() {
+    protected IBasePersenter<FenLeiItemContract.View> createPersenter() {
         return new FenLeiItemPersenter();
     }
 
@@ -85,15 +86,6 @@ public class classify_Fragment extends BaseFragment implements FenLeiItemContrac
         EventBus.getDefault().unregister(this);
     }
 
-    @Override
-    public void FenLeiItemDataReturn(FenLei_TabBean fenLei_tabBean) {
-        List<FenLei_TabBean.DataBean.CategoryListBean> categoryList = fenLei_tabBean.getData().getCategoryList();
-        tv_fenlei.setText(categoryList.get(posi).getFront_desc());
-        Glide.with(context).load(categoryList.get(posi).getWap_banner_url()).into(img_fenlei);
-        tablist.clear();
-        tablist.addAll(categoryList);
-        adapter.notifyDataSetChanged();
-    }
 
     @Override
     public void showLoading() {
@@ -103,5 +95,15 @@ public class classify_Fragment extends BaseFragment implements FenLeiItemContrac
     @Override
     public void showError(String err) {
 
+    }
+
+    @Override
+    public void FenLeiItemDataReturn(SortBean sortBean) {
+        List<SortBean.DataBean.CategoryListBean> categoryList = sortBean.getData().getCategoryList();
+        tv_fenlei.setText(categoryList.get(posi).getFront_desc());
+        Glide.with(context).load(categoryList.get(posi).getWap_banner_url()).into(img_fenlei);
+        tablist.clear();
+        tablist.addAll(categoryList);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -6,13 +6,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.shixun.Utils.SystemUtils;
+import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.IBaseView;
-import com.shixun.interfaces.IPersenter;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity<V extends IBaseView,P extends IPersenter> extends AppCompatActivity implements IBaseView {
+public abstract class BaseActivity<V extends IBaseView,P extends IBasePersenter> extends AppCompatActivity implements IBaseView {
 
     protected Context context;
     protected P persenter;
@@ -44,7 +44,7 @@ public abstract class BaseActivity<V extends IBaseView,P extends IPersenter> ext
             unbinder = ButterKnife.bind(this);
             initView();
             persenter = createPersenter();
-            persenter.attchView(this);
+            persenter.attachView(this);
             initData();
         }
     }
@@ -65,7 +65,7 @@ public abstract class BaseActivity<V extends IBaseView,P extends IPersenter> ext
     protected void onResume() {
         super.onResume();
         if(persenter != null){
-            persenter.attchView(this);
+            persenter.attachView(this);
         }
     }
 

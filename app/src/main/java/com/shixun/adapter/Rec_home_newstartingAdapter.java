@@ -1,59 +1,40 @@
 package com.shixun.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.shixun.R;
-import com.shixun.model.bean.ShouYeBean;
+import com.shixun.base.BaseAdapter;
+import com.shixun.model.bean.IndexBean;
 
 
 import java.util.List;
-
-public class Rec_home_newstartingAdapter extends RecyclerView.Adapter<Rec_home_newstartingAdapter.Vh> {
-    private List<ShouYeBean.DataBean.NewGoodsListBean> list;
-    private Context con;
-
-    public Rec_home_newstartingAdapter(List<ShouYeBean.DataBean.NewGoodsListBean> list, Context con) {
-        this.list = list;
-        this.con = con;
-    }
-
-    @NonNull
-    @Override
-    public Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(con, R.layout.item_home, null);
-        return new Vh(view);
+//新品首发
+public class Rec_home_newstartingAdapter extends BaseAdapter {
+    public Rec_home_newstartingAdapter(List data, Context context) {
+        super(data, context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Vh holder, int position) {
-        holder.name.setText(list.get(position).getName());
-        holder.price.setText(list.get(position).getRetail_price());
-        Glide.with(con).load(list.get(position).getList_pic_url()).into(holder.img);
+    public int getLayout() {
+        return R.layout.item_home;
     }
 
     @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-    public class Vh extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView name;
-        TextView price;
-        public Vh(@NonNull View itemView) {
-            super(itemView);
-            img =  itemView.findViewById(R.id.iv_item_shouye_yisi);
-            name =  itemView.findViewById(R.id.tv_item_shouye_yisiname);
-            price =  itemView.findViewById(R.id.tv_item_shouye_yisiprice);
-        }
+    public void bindData(com.shixun.base.BaseAdapter.BaseViewHolder holder, Object o) {
+        IndexBean.DataBean.NewGoodsListBean bean = (IndexBean.DataBean.NewGoodsListBean) o;
+        ImageView img_news = (ImageView)holder.getView(R.id.iv_item_shouye_yisi);
+        TextView txt_name = (TextView)holder.getView(R.id.tv_item_shouye_yisiname);
+        TextView txt_price = (TextView)holder.getView(R.id.tv_item_shouye_yisiprice);
+        //数据填充
+        Glide.with(mContext).load(bean.getList_pic_url()).into(img_news);
+        txt_name.setText(bean.getName());
+        String price = mContext.getResources().getString(R.string.price_news_model);
+        txt_price.setText(price.replace("$",bean.getRetail_price()));
     }
 }
+

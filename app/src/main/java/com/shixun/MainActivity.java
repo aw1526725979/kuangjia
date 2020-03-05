@@ -4,7 +4,12 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.shixun.R;
 import com.shixun.view.Cart.CartFragment;
@@ -16,25 +21,37 @@ import com.shixun.view.special.SpecialFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    HomeFragment homeFragment;
+    /*HomeFragment homeFragment;
     OwnFragment ownFragment;
     SpecialFragment specialFragment;
     ClassifyFragment classifyFragment;
     CartFragment cartFragment;
     FrameLayout mFragmentBox;
     TabLayout mTab;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("                       仿网易严选");
-        initView();
+       // initView();
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home, R.id.navigation_topic, R.id.navigation_sort,
+                R.id.navigation_shop,R.id.navigation_me)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
 
+        /*Intent intent  = new Intent(this, RegisterActivity.class);
+        startActivity(intent);*/
 
 
     }
-    private void initView() {
+    /*private void initView() {
         mFragmentBox = (FrameLayout) findViewById(R.id.fragmentBox);
         mTab = (TabLayout) findViewById(R.id.tab);
 
@@ -125,5 +142,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }

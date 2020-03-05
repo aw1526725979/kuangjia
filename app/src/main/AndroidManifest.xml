@@ -16,6 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".GoodsDescActivity"></activity>
+        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".view.home.activity.BrandActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
