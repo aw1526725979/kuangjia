@@ -1,4 +1,4 @@
-package com.shixun.persenter;
+package com.shixun.persenter.home;
 
 
 import com.shixun.Utils.RxUtils;
@@ -14,14 +14,14 @@ public class HomePersenter extends BasePersenter<HomeContract.View> implements H
     @Override
     public void getHomeData() {
         addSubscribe(HttpManager.getInstance().getShopApi().getIndexData()
-                .compose(RxUtils.<IndexBean>rxScheduler())
-                .subscribeWith(new CommonSubscriber<IndexBean>(mView){
+        .compose(RxUtils.<IndexBean>rxScheduler())
+        .subscribeWith(new CommonSubscriber<IndexBean>(mView){
 
-                    @Override
-                    public void onNext(IndexBean indexBean) {
-                        mView.getHomeDataReturn(indexBean);
-                    }
-                }));
+            @Override
+            public void onNext(IndexBean indexBean) {
+                mView.getHomeDataReturn(indexBean);
+            }
+        }));
     }
 
 }

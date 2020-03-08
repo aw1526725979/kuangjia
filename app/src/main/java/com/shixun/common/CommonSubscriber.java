@@ -1,4 +1,4 @@
-package com.shixun.constants;
+package com.shixun.common;
 
 import android.text.TextUtils;
 
@@ -38,7 +38,7 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
         //LoadingUtil.getInstance().hideLoading();
         if(mView == null) return;
         if(errorMsg != null && TextUtils.isEmpty(errorMsg)){
-            mView.showError(errorMsg);
+           mView.showTips(errorMsg);
         }
     }
 

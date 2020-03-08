@@ -1,4 +1,4 @@
-package com.shixun.constants;
+package com.shixun.common;
 
 import android.graphics.Rect;
 import android.view.View;

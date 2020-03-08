@@ -39,7 +39,7 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
         //LoadingUtil.getInstance().hideLoading();
         if(mView == null) return;
         if(errorMsg != null && TextUtils.isEmpty(errorMsg)){
-            mView.showError(errorMsg);
+            mView.showTips(errorMsg);
         }
     }
 

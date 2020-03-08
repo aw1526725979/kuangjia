@@ -1,18 +1,13 @@
 package com.shixun.adapter;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.shixun.R;
 import com.shixun.base.BaseAdapter;
-import com.shixun.constants.Constant;
+import com.shixun.common.Constant;
 import com.shixun.model.bean.IndexBean;
 
 

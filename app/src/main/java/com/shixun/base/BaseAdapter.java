@@ -74,18 +74,6 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     //hodler是对应的item的管理的，T当前item所对应的数据
     public abstract void bindData(BaseViewHolder holder,T t);
 
-    //设置回调接口的监听
-    public void setOnItemClickHandler(ItemClickHandler clickHandler){
-        this.itemClickHandler = clickHandler;
-    }
-
-    /**
-     * 定义回调接口
-     */
-    public interface ItemClickHandler{
-        void itemClick(int position, BaseViewHolder holder);
-    }
-
     /**
      * 创建基类的ViewHolder
      */
@@ -113,4 +101,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
+    //设置回调接口的监听
+    public void setOnItemClickHandler(ItemClickHandler clickHandler){
+        this.itemClickHandler = clickHandler;
+    }
+
+    /**
+     * 定义回调接口
+     */
+    public interface ItemClickHandler{
+        void itemClick(int position, BaseViewHolder holder);
+    }
+
 }
+

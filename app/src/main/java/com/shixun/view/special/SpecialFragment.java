@@ -12,13 +12,12 @@ import com.shixun.base.BaseFragment;
 import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.home.HomeContract;
 import com.shixun.model.bean.IndexBean;
-import com.shixun.persenter.HomePersenter;
+import com.shixun.persenter.home.HomePersenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpecialFragment extends BaseFragment implements HomeContract.View {
-
 
     private RecyclerView rec;
     private List<IndexBean.DataBean.TopicListBean> list;
@@ -30,6 +29,10 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
+    protected void initView() {
+
+    }
+
     protected void initView(View view) {
         rec = view.findViewById(R.id.rec_zhuanti);
         rec.setLayoutManager(new LinearLayoutManager(context));
@@ -40,7 +43,7 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
 
     @Override
     protected void initData() {
-        ((HomePersenter)persenter).getHomeData();
+        persenter.getHomeData();
     }
 
     @Override
@@ -48,22 +51,15 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
         return new HomePersenter();
     }
 
-
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showError(String err) {
-
-    }
-
     @Override
     public void getHomeDataReturn(IndexBean indexBean) {
         List<IndexBean.DataBean.TopicListBean> topicList = indexBean.getData().getTopicList();
         list.addAll(topicList);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showTips(String msg) {
+
     }
 }

@@ -3,7 +3,6 @@ package com.shixun.view.home;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,11 +14,11 @@ import com.shixun.R;
 import com.shixun.adapter.Rec_home_newstartingAdapter;
 import com.shixun.adapter.Rec_home_brandAdapter;
 import com.shixun.base.BaseAdapter;
-import com.shixun.base.BaseFragment;
 
+import com.shixun.base.BaseFragment;
 import com.shixun.interfaces.home.HomeContract;
 import com.shixun.model.bean.IndexBean;
-import com.shixun.persenter.HomePersenter;
+import com.shixun.persenter.home.HomePersenter;
 import com.shixun.view.home.activity.BrandActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -47,86 +46,87 @@ public class HomeFragment extends BaseFragment<HomeContract.Persenter> implement
     protected int getLayout() {
         return R.layout.fragment_home;
     }
-    @Override
-    protected void initView(View view) {
-    }
+
     protected void initView() {
         list = new ArrayList<>();
-        brandAdapter = new Rec_home_brandAdapter(list,context);
-        recyclerView.setLayoutManager(new GridLayoutManager(context,2));
+        brandAdapter = new Rec_home_brandAdapter(list, context);
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         recyclerView.setAdapter(brandAdapter);
         brandAdapter.setOnItemClickHandler(this);
 
         //初始化新品列表
         newsList = new ArrayList<>();
-        newsAdapter = new Rec_home_newstartingAdapter(newsList,context);
-        recyclerViewNews.setLayoutManager(new GridLayoutManager(context,2));
+        newsAdapter = new Rec_home_newstartingAdapter(newsList, context);
+        recyclerViewNews.setLayoutManager(new GridLayoutManager(context, 2));
         recyclerViewNews.setAdapter(newsAdapter);
         //避免当前类中多个列表的点击接口回调的冲突，建议使用匿名的类实例
         newsAdapter.setOnItemClickHandler(new BaseAdapter.ItemClickHandler() {
             @Override
             public void itemClick(int position, BaseAdapter.BaseViewHolder holder) {
-                Log.i("newsItemClick",String.valueOf(position));
+                Log.i("newsItemClick", String.valueOf(position));
             }
         });
 
     }
+
     @Override
     protected void initData() {
         persenter.getHomeData();
     }
+
     @Override
     protected HomeContract.Persenter createPersenter() {
         return new HomePersenter();
     }
+
     @Override
     public void getHomeDataReturn(IndexBean result) {
-        List<IndexBean.DataBean.BannerBean> banners = new IndexBean().getData().getBanner() ;
+        List<IndexBean.DataBean.BannerBean> banners = new IndexBean().getData().getBanner();
         //banner图片资源的集合
         final ArrayList<String> imgs = new ArrayList<>();
         for (int i = 0; i < banners.size(); i++) {
             String image_url = banners.get(i).getImage_url();
             imgs.add(image_url);
+
+            //banner轮播图的实现
+            banner.setImages(imgs).setImageLoader(new ImageLoader() {
+                @Override
+                public void displayImage(Context context, Object path, ImageView imageView) {
+                    Glide.with(context).load((String) path).into(imageView);
+                }
+            }).start();
+
+            //banner的点击监听
+            banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+
+            //刷新Brand列表数据
+            brandAdapter.updata(result.getData().getBrandList());
+            //刷新新品发布列表数据
+            newsAdapter.updata(result.getData().getNewGoodsList());
         }
 
-        //banner轮播图的实现
-        banner.setImages(imgs).setImageLoader(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
-                Glide.with(context).load((String) path).into(imageView);
-            }
-        }).start();
 
-        //banner的点击监听
-        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        //刷新Brand列表数据
-        brandAdapter.updata(result.getData().getBrandList());
-        //刷新新品发布列表数据
-        newsAdapter.updata(result.getData().getNewGoodsList());
     }
-
-/**
+    /**
      * 接口回调的方法
      * @param position
-     * @param holder*/
-
-
+     * @param holder
+     */
     @Override
     public void itemClick(int position, BaseAdapter.BaseViewHolder holder) {
         IndexBean.DataBean.BrandListBean bean = list.get(position);
@@ -139,12 +139,7 @@ public class HomeFragment extends BaseFragment<HomeContract.Persenter> implement
     }
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showError(String err) {
+    public void showTips(String msg) {
 
     }
 }

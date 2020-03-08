@@ -1,8 +1,5 @@
 package com.shixun.base;
 
-
-
-
 import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.IBaseView;
 
@@ -11,51 +8,48 @@ import java.lang.ref.WeakReference;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-
-public class BasePersenter<V extends IBaseView> implements IBasePersenter<V> {
+/**
+ * p层的实现基类 实现特征：
+ * 1.关联和解绑V层
+ * 2.对网络请求对象进行背压式处理CompositeDisposable
+ *
+ */
+public abstract class BasePersenter<V extends IBaseView> implements IBasePersenter<V> {
 
     protected V mView;
+    //对V层的进行弱引用
+    WeakReference<V> weakReference;
 
-    //弱引用 view
-    private WeakReference<V> weakReference;
-
-    //rxjava2 数据加载的时候，界面回收一起的数据内存泄漏
-    protected CompositeDisposable compositeDisposable;
-
+    //rxjava2 背压式网络请求处理
+    CompositeDisposable compositeDisposable;
 
     @Override
     public void attachView(V view) {
         weakReference = new WeakReference<>(view);
-        this.mView = weakReference.get();
+        mView = weakReference.get();
     }
 
-    //解绑view的关联，同时解绑数据加载的关闭，避免出现内存泄漏
+    /**
+     * 把当前业务下的网络请求对象添加到compositedisposable
+     * @param disposable
+     */
+    public void addSubscribe(Disposable disposable){
+        if(compositeDisposable == null) compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(disposable);
+    }
+
+    /**
+     * 在界面关闭时候移除网络请求对象
+     */
+    public void unSubscribe(){
+        if(compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
+    }
+
     @Override
     public void detachView() {
         this.mView = null;
         unSubscribe();
     }
-
-    //解绑观察者和被观察者
-    protected void unSubscribe(){
-        if(compositeDisposable != null){
-            compositeDisposable.clear();
-        }
-    }
-
-    //添加观察者和被观察者的操作类
-    //Disposable
-    protected void addSubscribe(Disposable disposable){
-        if(compositeDisposable == null) compositeDisposable = new CompositeDisposable();
-        compositeDisposable.add(disposable);
-    }
-
-    //添加带事件类型的观察者和被观察者
-    /*protected <E> void addRxBusSubsribe(Class<E> eventType, Consumer<E> consumer){
-        if(compositeDisposable == null) compositeDisposable = new CompositeDisposable();
-        compositeDisposable.add(RxBus.getDefault().toDefaultFlowable(eventType,consumer));
-    }*/
-
-
-
 }

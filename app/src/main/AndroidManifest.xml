@@ -18,13 +18,19 @@
         <activity android:name=".GoodsDescActivity"></activity>
         <activity android:name=".base.BaseActivity"></activity>
         <activity android:name=".view.home.activity.BrandActivity"></activity>
+       <activity android:name=".interfaces.classify.activity.SortDetailActivity"></activity>
+        <activity android:name=".view.Cart.GoodInfoActivity"></activity>
+        <activity android:name=".base.RxActivity"></activity>
+        <activity android:name=".view.login.LoginActivity"></activity>
+        <activity android:name=".view.login.RegisterActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="true"/>
     </application>
 
 </manifest>

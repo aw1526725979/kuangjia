@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.shixun.Utils.SpUtils;
 import com.shixun.Utils.SystemUtils;
-import com.shixun.constants.Constant;
+import com.shixun.common.Constant;
 import com.shixun.model.api.ShopApi;
 import com.shixun.model.api.WanApi;
 

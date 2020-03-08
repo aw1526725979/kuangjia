@@ -14,6 +14,7 @@ import com.shixun.base.BaseActivity;
 import com.shixun.interfaces.home.BrandConstract;
 import com.shixun.model.bean.BrandBean;
 import com.shixun.model.bean.BrandGoodsBean;
+import com.shixun.persenter.home.BrandPersenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,5 +79,10 @@ public class BrandActivity extends BaseActivity<BrandConstract.Persenter> implem
     @Override
     public void getBrandGoodsReturn(BrandGoodsBean result) {
         brandGoodsAdapter.updata(result.getData().getGoodsList());
+    }
+
+    @Override
+    public void showTips(String msg) {
+
     }
 }

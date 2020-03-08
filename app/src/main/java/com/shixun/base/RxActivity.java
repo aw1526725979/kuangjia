@@ -91,7 +91,6 @@ public class RxActivity extends AppCompatActivity {
     public interface OnPermissionResultListener{
         //设置权限被允许
         void onAllow();
-
         //设置权限被拒绝
         void onReject();
     }

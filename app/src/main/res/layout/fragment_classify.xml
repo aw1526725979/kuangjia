@@ -3,34 +3,86 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
-        android:id="@+id/et_fenlei"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="#C7C7C7"
-        android:gravity="center_horizontal"
-        android:hint="🔍商品搜索，共239款好物"
-        app:layout_constraintTop_toTopOf="parent" />
-    <q.rorbin.verticaltablayout.VerticalTabLayout
-        android:id="@+id/tab_fenlei"
-        android:layout_width="70dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_left"
+        android:layout_width="150dp"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        app:tab_margin="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/fl_fenlei"
-        app:layout_constraintTop_toTopOf="@id/fl_fenlei"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:tab_mode="scrollable" />
-    <FrameLayout
-        android:id="@+id/fl_fenlei"
+        app:layout_constraintTop_toTopOf="parent">
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/verticalTab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></q.rorbin.verticaltablayout.VerticalTabLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/tab_fenlei"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_fenlei" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintLeft_toRightOf="@id/layout_left"
+        app:layout_constraintRight_toRightOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:padding="15dp">
+                <ImageView
+                    android:id="@+id/img_bg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/col_gray_line"
+                    android:scaleType="centerCrop">
+                </ImageView>
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:textColor="@color/col_white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/col_gray_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/txt_title"
+                    app:layout_constraintTop_toTopOf="parent"></View>
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="title 商品"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                <View
+                    android:layout_width="30dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/col_gray_line"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/txt_title"
+                    app:layout_constraintTop_toTopOf="parent"></View>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

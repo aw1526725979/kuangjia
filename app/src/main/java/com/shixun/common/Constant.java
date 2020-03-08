@@ -1,4 +1,4 @@
-package com.shixun.constants;
+package com.shixun.common;
 
 
 import com.shixun.apps.MyApp;

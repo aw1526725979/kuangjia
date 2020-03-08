@@ -70,16 +70,6 @@ public abstract class BaseActivity<V extends IBaseView,P extends IBasePersenter>
     }
 
     @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void showError(String err) {
-
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         if(persenter != null){
