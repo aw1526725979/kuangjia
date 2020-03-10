@@ -40,7 +40,14 @@ public class RegisterActivity extends BaseActivity<RegisterConstract.Persenter> 
 
     @Override
     protected void initView() {
-
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nickname = editUsername.getText().toString();
+                String password = editPw1.getText().toString();
+                String poss = editPw2.getText().toString();
+            }
+        });
     }
 
     @Override
@@ -72,6 +79,7 @@ public class RegisterActivity extends BaseActivity<RegisterConstract.Persenter> 
     private void updateVerify(VerifyBean bean){
         Glide.with(this).load(bean.getData().getImg()).into(imgVerify);
     }
+
 
     @Override
     public void showTips(String msg) {
