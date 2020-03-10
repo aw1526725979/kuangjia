@@ -7,12 +7,13 @@ import com.shixun.model.bean.VerifyBean;
 
 public interface RegisterConstract {
 
-    interface View extends IBaseView {
+    interface View extends IBaseView{
         void getVerifyReturn(VerifyBean result);
     }
 
-    interface Persenter extends IBasePersenter<View> {
+    interface Persenter extends IBasePersenter<View>{
         void getVerify();
     }
+
 
 }

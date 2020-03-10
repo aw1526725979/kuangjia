@@ -7,12 +7,11 @@ import com.shixun.model.bean.UserBean;
 
 public interface LoginConstract {
 
-    interface View extends IBaseView {
+    interface View extends IBaseView{
         void loginReturn(UserBean result);
     }
 
-    interface Persenter extends IBasePersenter<View> {
-        void login(String nickname, String password);
+    interface Persenter extends IBasePersenter<View>{
+        void login(String nickname,String password);
     }
-
 }

@@ -1,6 +1,9 @@
 package com.shixun.view.special;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,16 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shixun.R;
 import com.shixun.adapter.Rec_specialAdapter;
+import com.shixun.base.BaseAdapter;
 import com.shixun.base.BaseFragment;
-import com.shixun.interfaces.IBasePersenter;
 import com.shixun.interfaces.home.HomeContract;
 import com.shixun.model.bean.IndexBean;
 import com.shixun.persenter.home.HomePersenter;
+import com.shixun.view.home.activity.BrandActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class SpecialFragment extends BaseFragment implements HomeContract.View {
+public class SpecialFragment extends BaseFragment<HomeContract.Persenter> implements HomeContract.View, BaseAdapter.ItemClickHandler {
 
     private RecyclerView rec;
     private List<IndexBean.DataBean.TopicListBean> list;
@@ -47,7 +50,7 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
-    protected IBasePersenter<HomeContract.View> createPersenter() {
+    protected HomeContract.Persenter createPersenter() {
         return new HomePersenter();
     }
 
@@ -61,5 +64,11 @@ public class SpecialFragment extends BaseFragment implements HomeContract.View {
     @Override
     public void showTips(String msg) {
 
+    }
+
+    @Override
+    public void itemClick(int position, BaseAdapter.BaseViewHolder holder) {
+        IndexBean.DataBean.TopicListBean topicListBean = list.get(position);
+        ((TextView)holder.getView(R.id.txt_name)).setText(topicListBean.getTitle()+"新的名字");
     }
 }

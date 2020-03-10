@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+
 public class BrandActivity extends BaseActivity<BrandConstract.Persenter> implements BrandConstract.View {
 
     int brandId;

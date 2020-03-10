@@ -1,5 +1,6 @@
 package com.shixun;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -15,26 +16,26 @@ import com.shixun.R;
 import com.shixun.view.Cart.CartFragment;
 import com.shixun.view.classify.ClassifyFragment;
 import com.shixun.view.home.HomeFragment;
+import com.shixun.view.login.RegisterActivity;
 import com.shixun.view.own.OwnFragment;
 import com.shixun.view.special.SpecialFragment;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    /*HomeFragment homeFragment;
+/*    HomeFragment homeFragment;
     OwnFragment ownFragment;
     SpecialFragment specialFragment;
     ClassifyFragment classifyFragment;
     CartFragment cartFragment;
     FrameLayout mFragmentBox;
-    TabLayout mTab;
-*/
+    TabLayout mTab;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("                       仿网易严选");
-       // initView();
+     //   initView();
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -46,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        /*Intent intent  = new Intent(this, RegisterActivity.class);
-        startActivity(intent);*/
-
+      /*  Intent intent  = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+*/
 
     }
     /*private void initView() {

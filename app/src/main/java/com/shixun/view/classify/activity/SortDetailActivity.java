@@ -1,4 +1,4 @@
-package com.shixun.interfaces.classify.activity;
+package com.shixun.view.classify.activity;
 
 import android.content.Intent;
 import android.view.View;
@@ -26,8 +26,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class SortDetailActivity extends BaseActivity<ClassifyContract.DetailPersenter> implements ClassifyContract.DetailView,
-        TabLayout.OnTabSelectedListener, BaseAdapter.ItemClickHandler {
+import static com.shixun.interfaces.classify.ClassifyContract.*;
+
+public class SortDetailActivity extends BaseActivity<ClassifyContract.DetailPersenter>implements DetailView,
+        TabLayout.OnTabSelectedListener,BaseAdapter.ItemClickHandler{
     @BindView(R.id.img_back)
     ImageView imgBack;
     @BindView(R.id.txt_title)
@@ -45,17 +47,19 @@ public class SortDetailActivity extends BaseActivity<ClassifyContract.DetailPers
     List<SortDetailTabBean.DataBean.BrotherCategoryBean> tabs;
     List<SortDetailGoodsBean.DataBeanX.GoodsListBean> goodsList;
     DetailGoodsAdapter detailGoodsAdapter;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_sort_detail;
     }
+
     @Override
     protected void initView() {
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addOnTabSelectedListener(this);
         goodsList = new ArrayList<>();
-        detailGoodsAdapter = new DetailGoodsAdapter(goodsList,this);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        detailGoodsAdapter = new DetailGoodsAdapter(goodsList, this);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(detailGoodsAdapter);
         recyclerView.addItemDecoration(new RecycleGridDivider());
         detailGoodsAdapter.setOnItemClickHandler(this);
@@ -66,33 +70,36 @@ public class SortDetailActivity extends BaseActivity<ClassifyContract.DetailPers
             }
         });
     }
+
     @Override
     protected void initData() {
         int id = getIntent().getIntExtra("sortId", 0);
         persenter.getSortDetailTab(id);
     }
+
     @Override
-    protected ClassifyContract.DetailPersenter createPersenter() {
+    protected DetailPersenter createPersenter() {
         return new FenLeiItemPersenter();
     }
+
     @Override
     public void getSortDetailTabReturn(SortDetailTabBean result) {
 
         int position = -1;
         tabs = result.getData().getBrotherCategory();
         //动态添加tab导航的内容
-        for (int i=0; i<result.getData().getBrotherCategory().size(); i++){
+        for (int i = 0; i < result.getData().getBrotherCategory().size(); i++) {
             SortDetailTabBean.DataBean.BrotherCategoryBean item = result.getData().getBrotherCategory().get(i);
             TabLayout.Tab tab = tabLayout.newTab();
             tab.setText(item.getName());
             tab.setTag(item.getId());
             tabLayout.addTab(tab);
 
-            if(result.getData().getCurrentCategory().getId() == item.getId()){
+            if (result.getData().getCurrentCategory().getId() == item.getId()) {
                 position = i;
             }
         }
-        if(position >= 0){
+        if (position >= 0) {
             tabLayout.getTabAt(position).select();
         }
     }
@@ -111,12 +118,13 @@ public class SortDetailActivity extends BaseActivity<ClassifyContract.DetailPers
         txtDes.setText(bean.getFront_desc());
         int id = (int) tab.getTag();
         //获取商品列表数据
-        persenter.getSortDetailGoods(id,1,1000);
+        persenter.getSortDetailGoods(id, 1, 1000);
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
     }
+
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
     }
@@ -125,7 +133,7 @@ public class SortDetailActivity extends BaseActivity<ClassifyContract.DetailPers
     public void itemClick(int position, BaseAdapter.BaseViewHolder holder) {
         int id = goodsList.get(position).getId();
         Intent intent = new Intent(this, GoodInfoActivity.class);
-        intent.putExtra("relatedId",id);
+        intent.putExtra("relatedId", id);
         startActivity(intent);
     }
 

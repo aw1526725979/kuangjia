@@ -1,4 +1,4 @@
-package com.shixun.interfaces.classify.activity;
+package com.shixun.view.classify.activity;
 
 import android.content.Context;
 import android.widget.ImageView;

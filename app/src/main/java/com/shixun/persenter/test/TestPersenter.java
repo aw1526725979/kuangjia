@@ -3,8 +3,8 @@ package com.shixun.persenter.test;
 
 import com.shixun.Utils.RxUtils;
 import com.shixun.base.BasePersenter;
+import com.shixun.common.CommonSubscriber;
 import com.shixun.interfaces.test.TestConstract;
-import com.shixun.model.CommonSubscriber;
 import com.shixun.model.bean.ChaptersBean;
 import com.shixun.model.http.HttpManager;
 
@@ -42,4 +42,5 @@ public class TestPersenter extends BasePersenter<TestConstract.View> implements 
                     }
                 });*/
     }
+
 }

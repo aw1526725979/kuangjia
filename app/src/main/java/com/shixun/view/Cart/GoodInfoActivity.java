@@ -20,8 +20,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.shixun.interfaces.Cart.CartConstart.*;
 
-public class GoodInfoActivity extends BaseActivity<CartConstart.Persenter> implements CartConstart.View {
+
+public class GoodInfoActivity extends BaseActivity<CartConstart.Persenter> implements View {
     @BindView(R.id.txt_title)
     TextView txtTitle;
     @BindView(R.id.txt_des)
@@ -85,7 +87,7 @@ public class GoodInfoActivity extends BaseActivity<CartConstart.Persenter> imple
     }
 
     @Override
-    protected CartConstart.Persenter createPersenter() {
+    protected Persenter createPersenter() {
         return new CartPersenter();
     }
 

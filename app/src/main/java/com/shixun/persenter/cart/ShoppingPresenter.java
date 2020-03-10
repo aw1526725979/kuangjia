@@ -1,11 +1,9 @@
 package com.shixun.persenter.cart;
 
-
-import com.shixun.R;
 import com.shixun.Utils.RxUtils;
 import com.shixun.base.BasePersenter;
+import com.shixun.common.CommonSubscriber;
 import com.shixun.interfaces.Cart.ShoppingConstact;
-import com.shixun.model.CommonSubscriber;
 import com.shixun.model.bean.CartBean;
 import com.shixun.model.bean.CartGoodsCheckBean;
 import com.shixun.model.bean.CartGoodsDeleteBean;
@@ -14,12 +12,13 @@ import com.shixun.model.http.HttpManager;
 
 import io.reactivex.functions.Function;
 
+
 public class ShoppingPresenter extends BasePersenter<ShoppingConstact.View> implements ShoppingConstact.Presenter {
     @Override
     public void getCartIndex() {
         addSubscribe(HttpManager.getInstance().getShopApi().getCartIndex()
         .compose(RxUtils.<CartBean>rxScheduler())
-        .map(new Function<CartBean, R>() {
+        .map(new Function<CartBean, CartBean>() {
             @Override
             public CartBean apply(CartBean cartBean) throws Exception {
                 for(CartBean.DataBean.CartListBean item:cartBean.getData().getCartList()){

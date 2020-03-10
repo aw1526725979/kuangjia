@@ -19,7 +19,7 @@ import com.shixun.adapter.SortGoodsAdapter;
 import com.shixun.base.BaseAdapter;
 import com.shixun.base.BaseFragment;
 import com.shixun.interfaces.classify.ClassifyContract;
-import com.shixun.interfaces.classify.activity.SortDetailActivity;
+import com.shixun.view.classify.activity.SortDetailActivity;
 import com.shixun.model.bean.SortBean;
 import com.shixun.model.bean.SortGoodsBean;
 import com.shixun.persenter.classify.FenLeiPersenter;

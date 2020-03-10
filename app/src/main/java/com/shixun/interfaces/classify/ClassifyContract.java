@@ -18,14 +18,9 @@ public interface ClassifyContract {
     }
 
     interface Persenter extends IBasePersenter<View>{
-
         void getSort();
-
         void getCurrentSortData(int id);
-
     }
-
-
     interface DetailView extends IBaseView{
 
         void getSortDetailTabReturn(SortDetailTabBean result);
@@ -40,7 +35,4 @@ public interface ClassifyContract {
         //获取分类详情页当前的商品列表数据
         void getSortDetailGoods(int id,int page,int size);
     }
-
-
-
 }

@@ -3,9 +3,11 @@ package com.shixun.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +41,9 @@ public abstract class BaseFragment<P extends IBasePersenter> extends Fragment im
         View view = inflater.inflate(getLayout(),null);
         return view;
     }
-
+   /* public Tank(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }*/
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,6 +64,14 @@ public abstract class BaseFragment<P extends IBasePersenter> extends Fragment im
     protected abstract void initData();
     //创建p层
     protected abstract P createPersenter();
+
+
+
+    @Override
+    public void showTips(String msg) {
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -70,4 +82,8 @@ public abstract class BaseFragment<P extends IBasePersenter> extends Fragment im
             unbinder.unbind();
         }
     }
+
+
+
+
 }
