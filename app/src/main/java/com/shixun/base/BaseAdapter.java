@@ -14,9 +14,11 @@ import java.util.List;
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
 
     protected ItemClickHandler itemClickHandler;
+    protected View.OnClickListener clickListener;
 
     protected List<T> mDatas;
     protected Context mContext;
+
 
     public BaseAdapter(List<T> data, Context context){
         mDatas = data;
@@ -104,6 +106,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     //设置回调接口的监听
     public void setOnItemClickHandler(ItemClickHandler clickHandler){
         this.itemClickHandler = clickHandler;
+    }
+
+    //设置接口回调监听，响应事件发生在条目中的某个组件上
+    public void setOnClickListener(View.OnClickListener listener){
+        this.clickListener = listener;
     }
 
     /**

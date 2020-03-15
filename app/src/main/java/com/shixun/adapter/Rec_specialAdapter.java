@@ -38,7 +38,6 @@ public class Rec_specialAdapter extends RecyclerView.Adapter<Rec_specialAdapter.
         holder.price.setText(list.get(position).getPrice_info()+"元起");
         Glide.with(con).load(list.get(position).getItem_pic_url()).into(holder.img);
     }
-
     @Override
     public int getItemCount() {
         return list.size();

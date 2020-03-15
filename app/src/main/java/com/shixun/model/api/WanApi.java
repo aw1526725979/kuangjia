@@ -11,5 +11,4 @@ public interface WanApi {
     @GET("wxarticle/chapters/json")
     Flowable<ChaptersBean> getChapters();
 
-
 }

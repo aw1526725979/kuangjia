@@ -33,7 +33,6 @@ public class SpecialFragment extends BaseFragment<HomeContract.Persenter> implem
 
     @Override
     protected void initView() {
-
     }
 
     protected void initView(View view) {
